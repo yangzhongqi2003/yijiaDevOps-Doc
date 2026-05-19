@@ -93,9 +93,9 @@ kubectl apply -f ~/nacos-yml/nacos-mysql.yml
 ```
 
 ```shell
-kubectl exec -it mysql-0 -- mysql -u root -pAdmin@2025 -e "alter user 'nacos'@'%' identified with mysql_native_password by 'nacos@2025';"
+kubectl exec -it mysql-0 -n nacos -- mysql -u root -pAdmin@2025 -e "alter user 'nacos'@'%' identified with mysql_native_password by 'nacos@2025';"
 
-kubectl exec -it mysql-0 -- mysql -u root -pAdmin@2025 -e "flush privileges;"
+kubectl exec -it mysql-0 -n nacos -- mysql -u root -pAdmin@2025 -e "flush privileges;"
 ```
 
 ```shell
@@ -104,9 +104,9 @@ https://github.com/alibaba/nacos/blob/3.1.0/config/src/main/resources/META-INF/m
 
 cd ~/nacos-yml && wget https://github.com/alibaba/nacos/raw/refs/tags/3.1.0/config/src/main/resources/META-INF/mysql-schema.sql
 
-kubectl exec -it mysql-0 -- mysql -u root -pAdmin@2025 nacos < mysql-schema.sql
+kubectl exec -it mysql-0 -n nacos -- mysql -u root -pAdmin@2025 nacos < mysql-schema.sql
 
-kubectl exec -it mysql-0 -- mysql -u root -pAdmin@2025 -e "use nacos;show tables;"
+kubectl exec -it mysql-0 -n nacos -- mysql -u root -pAdmin@2025 -e "use nacos;show tables;"
 ```
 
 ```shell
